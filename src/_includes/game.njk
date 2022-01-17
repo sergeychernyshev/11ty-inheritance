@@ -1,0 +1,13 @@
+---
+tags: pages
+page_type: game
+---
+
+{% extends "generic.njk" %}
+
+{% block main %}
+    <div class="game">
+        <h2 style="color: brown">Play {{title}} now!</h2>
+        {{ content | safe }}
+    </div>
+{% endblock %}

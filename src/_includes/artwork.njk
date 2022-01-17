@@ -1,0 +1,46 @@
+---
+tags: pages
+page_type: artwork
+---
+{% extends "generic.njk" %}
+
+{% block page_styles %}
+.artwork {
+    padding: 1em;
+}
+
+.artwork iframe, .artwork img {
+    width: 100%;
+}
+
+.art h2 {
+    text-align: center
+}
+
+section.artworks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+{% endblock %}
+
+{% block main %}
+    <div class="art">
+        <h2 style="color: green">{{category}}</h2>
+
+        <!-- art category description -->
+        {{ content | safe }}
+
+        <!-- grid of art works from "artworks" metadata key in the page -->
+        <section class="artworks">
+            {% for artwork in artworks %}
+                <div class="artwork">
+                    {% if artwork.isVideo %}
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{artwork.youtube_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {% else %}
+                        <img src="{{artwork.image_src}}"/>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </section>
+    </div>
+{% endblock %}

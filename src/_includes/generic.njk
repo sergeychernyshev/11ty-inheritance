@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>{{title}}</title>
+        <style>
+            h1 {
+                color: #9c27b0;
+            }
+
+            .page-type {
+                color: silver;
+            }
+            {% block page_styles %}
+            {% endblock %}
+        </style>
+    </head>
+    <body>
+        <h1>
+            {% if page_type %}
+                <a href="/">Home</a> > {{title}}
+                <span class="page-type">({{page_type}})</span>
+            {% else %}
+                {{title}}
+            {% endif %}
+        </h1>
+        <main>
+            {% block main %}
+                {{content | safe}}
+            {% endblock %}
+        </main>
+    </body>
+</html>
